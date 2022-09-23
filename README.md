@@ -6,8 +6,8 @@ Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
 
 * Caio Andrade @@@@@
 * Henrique @@@@@
-* Marco Aurélio @@@
-* Paula @@@@@@
+* Marco Aurélio de Noronha Santos
+* Paula de Freitas Camargos
 * Thales Matheus Mendonça Santos
 
 ## Professores responsáveis
