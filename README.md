@@ -6,7 +6,7 @@ Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
 
 * Caio Andrade @@@@@
 * Henrique @@@@@
-* Marco Aurélio @@@
+* Marco Aurélio de Noronha Santos
 * Paula @@@@@@
 * Thales Matheus Mendonça Santos
 
