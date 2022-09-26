@@ -97,9 +97,20 @@ A partir da caracterização do perfil dos usuários, representados através das
 
 As personas levantadas durante o processo de entendimento do problema são apresentadas na Figuras que se seguem.
 
-### Persona Médico
-![Mapa-empatia-medico](./images/mapa-empatia-medico.jpeg)
+### Persona Diabética Jovem
+![Mapa-empatia-diabético1](./images/persona-diabetico1.png)
+### Mapa de Empatia Diabética Jovem
+![Mapa-empatia-diabético1](./images/mapa-empatia-diabetico1.jfif)
 
+### Persona Diabético Idoso
+![Mapa-empatia-diabético2](./images/persona-diabetico2.png)
+### Mapa de Empatia Diabético Idoso
+![Mapa-empatia-diabético2](./images/mapa-empatia-diabetico2.jfif)
+
+### Persona Médico
+![Mapa-empatia-medico](./images/persona-medico.png)
+### Mapa de Empatia Médico
+![Mapa-empatia-medico](./images/mapa-empatia-medico.jpeg)
 
 ## Histórias de Usuários
 
@@ -119,22 +130,22 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    |                        Descrição do Requisito                       | Prioridade |
 |------|---------------------------------------------------------------------|------------|
-|RF-001| Acesso via login                                                         | ALTA  |
-|RF-002| Permitir que o usuário registre a hora e a medida da glicose no sangue   | ALTA  | 
-|RF-003| Permitir que o usuário registre hora e quantidade da dosagem de insulina | MÉDIA |
-|RF-004| Permitir o cadastro de diferentes medicamentos                           | MÉDIA |
-|RF-005| Permitir que o usuário registre hora de uma refeição                     | MÉDIA |
-|RF-006| Permitir a visualização gráfica de dados                                 | MÉDIA |
-|RF-007| Permitir a exportação de dados                                           | MÉDIA |
+|`RF-001`| Acesso via login                                                         | ALTA  |
+|`RF-002`| Permitir que o usuário registre a hora e a medida da glicose no sangue   | ALTA  | 
+|`RF-003`| Permitir que o usuário registre hora e quantidade da dosagem de insulina | MÉDIA |
+|`RF-004`| Permitir o cadastro de diferentes medicamentos                           | MÉDIA |
+|`RF-005`| Permitir que o usuário registre hora de uma refeição                     | MÉDIA |
+|`RF-006`| Permitir a visualização gráfica de dados                                 | MÉDIA |
+|`RF-007`| Permitir a exportação de dados                                           | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| O sistema deve ser de fácil entendimento |  BAIXA | 
-|RNF-003| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-|RNF-004| Proteção de acesso via usuário e senha |  BAIXA | 
+|`RNF-001`| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
+|`RNF-002`| O sistema deve ser de fácil entendimento |  BAIXA | 
+|`RNF-003`| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|`RNF-004`| Proteção de acesso via usuário e senha |  BAIXA | 
 
 
 ## Restrições
@@ -205,38 +216,27 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Controle de Versão
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Utilizaremos o sistema de controle de versões distribuído `git` fazendo uso das melhores práticas e convenções para commits (Ex.: [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)) para que seja criado um histórico claro e enxuto das modificações no projeto. 
 
-> Discuta como a configuração do projeto foi feita na ferramenta de
-> versionamento escolhida. Exponha como a gerência de tags, merges,
-> commits e branchs é realizada. Discuta como a gerência de issues foi
-> realizada.
-> A ferramenta de controle de versão adotada no projeto foi o
-> [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
-> foi utilizado para hospedagem do repositório `upstream`.
-> 
-> O projeto segue a seguinte convenção para o nome de branchs:
-> 
-> - `master`: versão estável já testada do software
-> - `unstable`: versão já testada do software, porém instável
-> - `testing`: versão em testes do software
-> - `dev`: versão de desenvolvimento do software
-> 
-> Quanto à gerência de issues, o projeto adota a seguinte convenção para
-> etiquetas:
-> 
-> - `bugfix`: uma funcionalidade encontra-se com problemas
-> - `enhancement`: uma funcionalidade precisa ser melhorada
-> - `feature`: uma nova funcionalidade precisa ser introduzida
->
-> **Links Úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
-> - [5 Git Workflows & Branching Strategy to deliver better code](https://zepel.io/blog/5-git-workflows-to-improve-development/)
->
-> **Exemplo - GitHub Feature Branch Workflow**:
->
-> ![Exemplo de Wireframe](images/Github-Workflow.png)
+Para repositório remoto utilizaremos o [GitHub](https://github.com/ICEI-PUC-Minas-PPLCC-TI/tiaw-ppl-cc-m-20222-grupo-monitorizacao-de-diabetes).
+
+O projeto segue a seguinte convenção para o nome de branchs:
+ 
+ - `master`: versão estável já testada do software
+ - `unstable`: versão já testada do software, porém instável
+ - `testing`: versão em testes do software
+ - `dev`: versão de desenvolvimento do software
+ 
+ Quanto à gerência de issues, o projeto adota a seguinte convenção para
+ etiquetas:
+ 
+ - `bugfix`: uma funcionalidade encontra-se com problemas
+ - `enhancement`: uma funcionalidade precisa ser melhorada
+ - `feature`: uma nova funcionalidade precisa ser introduzida
+
+**Exemplo - GitHub Feature Branch Workflow**:
+
+![Exemplo de Wireframe](images/Github-Workflow.png)
 
 # **############## SPRINT 1 ACABA AQUI #############**
 
