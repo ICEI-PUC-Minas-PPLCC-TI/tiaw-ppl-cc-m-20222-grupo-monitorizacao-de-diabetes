@@ -1,5 +1,5 @@
 # Informações do Projeto
-## Monitor de Glicose 
+## GlicoStats
 
 `Ciência da Computação`
 
