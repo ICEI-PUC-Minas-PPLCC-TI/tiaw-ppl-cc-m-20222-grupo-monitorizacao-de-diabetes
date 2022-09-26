@@ -120,7 +120,8 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |---|---|---|
 |Portador de diabetes | Meio prático de registrar glicemias e doses de insulina | Melhorar organização e acompanhamento, sem depender de meios físicos (papel/caderno)|
 |Portador de diabetes | Ferramenta de controle de doses de medicações | Evitar esquecer doses das medicações |
-|Portador de diabetes | De uma maneira de analisar o relatório mensal do histórico de glicemia| Facilitar acompanhamentodo com o médico |
+|Portador de diabetes | De uma maneira de analisar o relatório mensal do histórico de glicemia| Facilitar acompanhamento do com o médico |
+|Médico | A plataforma permitisse a configuração de um nível de glicose alto| Facilitar o acompanhamento e controle dos níveis de glicose |
 
 ## Requisitos
 
@@ -128,24 +129,24 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    |                        Descrição do Requisito                       | Prioridade |
-|------|---------------------------------------------------------------------|------------|
-|`RF-001`| Acesso via login                                                         | ALTA  |
-|`RF-002`| Permitir que o usuário registre a hora e a medida da glicose no sangue   | ALTA  | 
-|`RF-003`| Permitir que o usuário registre hora e quantidade da dosagem de insulina | MÉDIA |
-|`RF-004`| Permitir o cadastro de diferentes medicamentos                           | MÉDIA |
-|`RF-005`| Permitir que o usuário registre hora de uma refeição                     | MÉDIA |
-|`RF-006`| Permitir a visualização gráfica de dados                                 | MÉDIA |
-|`RF-007`| Permitir a exportação de dados                                           | MÉDIA |
-
+|ID      |                        Descrição do Requisito                            | Prioridade |
+|--------|--------------------------------------------------------------------------|------------|
+|`RF-001`| Acesso via login                                                         | ALTA       |
+|`RF-002`| Permitir que o usuário registre a hora e a medida da glicose no sangue   | ALTA       | 
+|`RF-003`| Permitir que o usuário registre hora e quantidade da dosagem de insulina | MÉDIA      |
+|`RF-004`| Permitir o cadastro de diferentes medicamentos                           | MÉDIA      |
+|`RF-005`| Permitir que o usuário registre hora de uma refeição                     | MÉDIA      |
+|`RF-006`| Permitir a visualização gráfica de dados                                 | MÉDIA      |
+|`RF-007`| Permitir a exportação de dados                                           | MÉDIA      |
+|`RF-007`| Permitir que o usuário configure uma faixa alvo de nível de glicose      | MÉDIA      |
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|`RNF-001`| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|`RNF-002`| O sistema deve ser de fácil entendimento |  BAIXA | 
-|`RNF-003`| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-|`RNF-004`| Proteção de acesso via usuário e senha |  BAIXA | 
+|ID       | Descrição do Requisito                                            |Prioridade |
+|---------|-------------------------------------------------------------------|-----------|
+|`RNF-001`| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA     | 
+|`RNF-002`| O sistema deve ser de fácil entendimento                          | BAIXA     | 
+|`RNF-003`| Deve processar requisições do usuário em no máximo 3s             | BAIXA     | 
+|`RNF-004`| Proteção de acesso via usuário e senha                            | BAIXA     | 
 
 
 ## Restrições
@@ -163,20 +164,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## User Flow
 
-......  INCLUA AQUI O DIAGRAMA COM O FLUXO DO USUÁRIO NA APLICAÇÃO ......
-
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor
-> mapear todo fluxo de telas do site ou app. Essa técnica funciona
-> para alinhar os caminhos e as possíveis ações que o usuário pode
-> fazer junto com os membros de sua equipe.
->
-> **Links Úteis**:
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools & Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
->
-> **Exemplo**:
-
+![User flow](images/userflow.png)
 
 ## Wireframes
 
