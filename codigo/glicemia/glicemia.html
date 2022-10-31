@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="glicemia.css">
+    <script src="glicemia.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Medida de Glicemia</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Novo registro de glicemia</h1>
+    </div>
+    <div class="divForm"">
+        <form id=" formulario" method="post">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="glicemia">Valor da medida: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input1"><input type="value" name="glicemia"
+                    id="glicemia"><span class="unidade">mg/dl</span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="horario">Horário: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2"><input type="time" name="horario" id="horario">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="data">Data: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2"><input type="date" name="data" id="data">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="jejum">Tipo de medida: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2">
+                <select name="jejum" id="jejum">
+                    <option value="jejum">Jejum</option>
+                    <option value="pós-prandial">Pós-prandial</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><button type="submit" id="submitB">Registrar</button>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><button type="button" id="resetB">Limpar</button>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><button type="button" id="apagaB">Apagar Última</button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <div class="container ultimas">
+        <h1>Últimas cinco medidas:</h1>
+    </div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody id="tabela">
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
