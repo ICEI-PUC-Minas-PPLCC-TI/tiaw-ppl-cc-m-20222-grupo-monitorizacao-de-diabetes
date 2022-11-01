@@ -58,6 +58,9 @@ window.onload = () => {
         evento.preventDefault()
         checaGlicemia(); checaHorario(); checaData(); checaJejum();
         if (glicemiaPermite && horarioPermite && dataPermite && jejumPermite) {
+            if (medida[0].data == "2022-10-22") {
+                medida = [];
+            }
             medida.push({
                 id: Number(contador),
                 data: data.value,
