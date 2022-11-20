@@ -4,107 +4,249 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.0.0/date_fns.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.0.1/chartjs-plugin-annotation.min.js"></script>
   <title>GlicoStats</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <script>
+    $(function () {
+      var dateFormat = "mm/dd/yy";
+
+      from = $("#de")
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+        })
+        .on("change", function () {
+          to.datepicker("option", "minDate", getDate(this));
+          var selected_de = $(this).val();
+          de = parseInt(Date.parse(selected_de)) - 10800000;
+        }),
+
+        to = $("#ate").datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+        })
+          .on("change", function () {
+            from.datepicker("option", "maxDate", getDate(this));
+            var selected_ate = $(this).val();
+            ate = parseInt(Date.parse(selected_ate)) - 10800000 - 1000;
+            var glicemiaCompleta = JSON.parse(localStorage.getItem('glicemia'));
+            let glicemia = '['
+            for (var k in glicemiaCompleta) {
+              if (glicemiaCompleta[k].x >= de && glicemiaCompleta[k].x <= ate) {
+                glicemia += `{"x":${glicemiaCompleta[k].x},"y":${glicemiaCompleta[k].y}},`
+              }
+            }
+
+            if (glicemia.length > 1)
+              glicemia = glicemia.substr(0, glicemia.length - 1);
+            glicemia += ']';
+            console.log(glicemia);
+            glicemiaJSON = JSON.parse(glicemia);
+          });
+
+      function getDate(element) {
+        var date;
+        try {
+          date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch (error) {
+          date = null;
+        }
+        return date;
+      }
+      
+    });
+
+    onload = () => {
+      // mock data
+      let g = [{ x: 1666514113000, y: 70 }, { x: 1666522048000, y: 95 }, { x: 1666524913000, y: 150 }, { x: 1666540048000, y: 112 }, { x: 1666545808000, y: 235 }, { x: 1666555213000, y: 79 }, { x: 1668913200000, y: 132 }, { x: 1668913204360, y: 84 }];
+      let r = [{ x: 1666521013000, y: 200 }, { x: 1666539013000, y: 200 }];
+      let m = [{ x: 1666515613000, y: 150 }];
+      let i = [{ x: 1666526413000, y: 100 }];
+      localStorage.setItem('glicemia', JSON.stringify(g));
+      localStorage.setItem('refeicoes', JSON.stringify(r));
+      localStorage.setItem('remedios', JSON.stringify(m));
+      localStorage.setItem('insulina', JSON.stringify(i));
+      //-------------------------------------//
+
+      var glicemiaCompleta = JSON.parse(localStorage.getItem('glicemia'));
+      var refeicoesCompleta = JSON.parse(localStorage.getItem('refeicoes'));
+      var remediosCompleta = JSON.parse(localStorage.getItem('remedios'));
+      var insulinaCompleta = JSON.parse(localStorage.getItem('insulina'));
+
+      const hojeInicio = new Date((Date.now()));
+      const hojeFim = new Date(Date.now() + 86399000)
+
+      var de = parseInt(Date.parse(hojeInicio.toDateString())) - 10800000;
+      var ate = parseInt(Date.parse(hojeFim.toDateString())) - 10800000 - 1000;
+
+      let glicemia = '['
+
+      for (var k in glicemiaCompleta) {
+        if (glicemiaCompleta[k].x >= de && glicemiaCompleta[k].x <= ate) {
+          glicemia += `{"x":${glicemiaCompleta[k].x},"y":${glicemiaCompleta[k].y}},`
+        }
+      }
+
+      if (glicemia.length > 1)
+        glicemia = glicemia.substr(0, glicemia.length - 1);
+      glicemia += ']';
+      var glicemiaJSON = JSON.parse(glicemia);
+
+      //-------------------------------------------------//
+
+      let refeicoes = '['
+
+      for (var k in refeicoesCompleta) {
+        if (refeicoesCompleta[k].x >= de && refeicoesCompleta[k].x <= ate) {
+          refeicoes += `{"x":${refeicoesCompleta[k].x},"y":${refeicoesCompleta[k].y}},`
+        }
+      }
+
+      if (refeicoes.length > 1)
+        refeicoes = refeicoes.substr(0, refeicoes.length - 1);
+      refeicoes += ']';
+      let refeicoesJSON = JSON.parse(refeicoes);
+
+      //-------------------------------------------------//
+
+      let remedios = '['
+
+      for (var k in remediosCompleta) {
+        if (remediosCompleta[k].x >= de && remediosCompleta[k].x <= ate) {
+          remedios += `{"x":${remediosCompleta[k].x},"y":${remediosCompleta[k].y}},`
+        }
+      }
+
+      if (remedios.length > 1)
+        remedios = remedios.substr(0, remedios.length - 1);
+      remedios += ']';
+      let remediosJSON = JSON.parse(remedios);
+
+      //-------------------------------------------------//
+
+      let insulina = '['
+
+      for (var k in insulinaCompleta) {
+        if (insulinaCompleta[k].x >= de && insulinaCompleta[k].x <= ate) {
+          insulina += `{"x":${insulinaCompleta[k].x},"y":${insulinaCompleta[k].y}},`
+        }
+      }
+
+      if (insulina.length > 1)
+        insulina = insulina.substr(0, insulina.length - 1);
+      insulina += ']';
+      let insulinaJSON = JSON.parse(insulina);
+
+      //-------------------------------------------------//
+
+
+      new Chart("myChart", {
+        data: {
+          datasets: [
+            {
+              type: 'line',
+              label: 'Glicemia',
+              lineTension: 0.2,
+              backgroundColor: "rgba(255,0,0,1.0)",
+              borderColor: "rgba(255,0,0,1)",
+              data: glicemiaJSON
+            },
+            {
+              type: 'scatter',
+              label: 'Refeições',
+              lineTension: 0,
+              backgroundColor: "rgba(0,255,0,1.0)",
+              borderColor: "rgba(0,255,0,1)",
+              data: refeicoesJSON,
+              pointStyle: 'rect'
+            },
+            {
+              type: 'scatter',
+              label: 'Remédios',
+              lineTension: 0,
+              backgroundColor: "rgba(0,0,255,1.0)",
+              borderColor: "rgba(0,0,255,1)",
+              data: remediosJSON,
+            },
+            {
+              type: 'scatter',
+              label: 'Insulina',
+              lineTension: 0,
+              backgroundColor: "rgba(255,0,255,1.0)",
+              borderColor: "rgba(255,0,255,1)",
+              data: insulinaJSON,
+            },
+
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Glicose'
+          },
+          scales: {
+            x: {
+              grid: {
+                display: true,
+                drawBorder: true,
+                drawOnChartArea: true,
+                drawTicks: true,
+              },
+              type: 'time',
+              ticks: {
+                source: 'data'
+              }
+            },
+            y: {
+              min: 0,
+              max: 500,
+              grid: {
+                lineWidth: 2,
+                drawBorder: false,
+                color: function (context) {
+                  if (context.tick.value > 150) {
+                    return 'rgba(0, 0, 0, 1)';
+                  } else if (context.tick.value < 50) {
+                    return 'rgba(0, 0, 0, 1)';
+                  }
+
+                  return 'rgba(0, 255, 0, 1)';
+                },
+              },
+            },
+          }
+        },
+      });
+
+    }
+
+
+  </script>
+
 </head>
 
 <body>
+
+  <label for="de">De</label>
+  <input type="text" id="de" name="nde">
+  <label for="ate">Até</label>
+  <input type="text" id="ate" name="nate">
+
   <div style="width: 800px;">
     <canvas id="myChart" style="width: 100%; height: 400px"></canvas>
   </div>
-
-  <script>
-    //Chart.register(annotationPlugin);
-
-    //Mock data
-    var glicemia = [{ x: 1666514113000, y: 70 }, { x: 1666522048000, y: 95 }, { x: 1666524913000, y: 150 }, { x: 1666540048000, y: 112 }, { x: 1666545808000, y: 235 }, { x: 1666555213000, y: 79 }];
-    var refeicoes = [{ x: 1666521013000, y: 200 }, { x: 1666539013000, y: 200 }];
-    var remedios = [{ x: 1666515613000, y: 150 }];
-    var insulina = [{ x: 1666526413000, y: 100 }];
-
-    new Chart("myChart", {
-      data: {
-        datasets: [
-          {
-            type: 'line',
-            label: 'Glicemia',
-            lineTension: 0.2,
-            backgroundColor: "rgba(255,0,0,1.0)",
-            borderColor: "rgba(255,0,0,1)",
-            data: glicemia
-          },
-          {
-            type: 'scatter',
-            label: 'Refeições',
-            lineTension: 0,
-            backgroundColor: "rgba(0,255,0,1.0)",
-            borderColor: "rgba(0,255,0,1)",
-            data: refeicoes
-          },
-          {
-            type: 'scatter',
-            label: 'Remédios',
-            lineTension: 0,
-            backgroundColor: "rgba(0,0,255,1.0)",
-            borderColor: "rgba(0,0,255,1)",
-            data: remedios
-          },
-          {
-            type: 'scatter',
-            label: 'Insulina',
-            lineTension: 0,
-            backgroundColor: "rgba(255,0,255,1.0)",
-            borderColor: "rgba(255,0,255,1)",
-            data: insulina
-          },
-
-        ]
-      },
-      options: {
-        plugins: {
-          autocolors: false,
-          annotation: {
-            annotations: {
-              box1: {
-                // Indicates the type of annotation
-                type: 'box',
-                xMin: 1,
-                xMax: 100000000000000,
-                yMin: 70,
-                yMax: 150,
-                backgroundColor: 'rgba(255, 99, 132, 0.25)'
-              }
-            }
-          }
-        },
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Glicose'
-        },
-        scales: {
-          x: {
-            type: 'time',
-            ticks: {
-              source: 'data'
-            }
-          },
-          y: {
-            min: 0,
-            max: 500,
-          },
-        }
-      },
-      plugins: ['chartjs-plugin-annotation']
-    });
-  </script>
 
 </body>
 
