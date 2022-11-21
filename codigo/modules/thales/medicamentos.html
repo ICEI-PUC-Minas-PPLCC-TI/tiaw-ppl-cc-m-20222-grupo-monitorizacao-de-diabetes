@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="medicamentos.js"></script> -->
+    <link rel="stylesheet" href="../../assets/styles/medicamentos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Cadastro de Medicamentos</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro de Novo Medicamento</h1>
+    </div>
+    <div class="container">
+        <div class="divForm"">
+        <form id=" formulario" method="post">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="nome">Nome do medicamento e dose:
+                    </label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input1"><input type="text" name="nome" id="nome">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="unidade">Unidade: </label></div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2">
+                    <select name="unidade" id="unidade">
+                        <option value="comprimido(s)">comprimido</option>
+                        <option value="cápsula(s)">cápsula</option>
+                        <option value="injeção">aplicação injetável</option>
+                        <option value="patch(es)">patch adesivo</option>
+                        <option value="jato(s)">spray nasal</option>
+                        <option value="outro">outro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="quantidade">Quantidade padrão: </label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2"><input type="number" name="quantidade"
+                        id="quantidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><button class="btn btn-primary"
+                        id="cadastroMedicamento">Cadastrar</button></div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><button class="btn btn-primary"
+                        id="apagaMedicamento">Apagar Selecionados </button></div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container cadastrados">
+        <h1>Medicamentos Cadastrados</h1>
+    </div>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome e dose</th>
+                    <th>Quantidade</th>
+                    <th>Unidade</th>
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody id="tabela">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <a href="dose.html" class="btn btn-primary">Registrar nova dose</a>
+    </div>
+
+</body>
+
+<script>
+    if ((localStorage.getItem('medicamentos') == null) || (localStorage.getItem('medicamentos')[8] != ':') || (localStorage.getItem('medicamentos') == "") || (localStorage.getItem('medicamentos') == "[]")) {
+        if (confirm("Não há medicamentos cadastrados. Deseja carregar dados de exemplo?")) {
+            var medicamentos = [
+                {
+                    nome: "Dipirona 500mg",
+                    unidade: "comprimido(s)",
+                    quantidade: 2
+                },
+                {
+                    nome: "Saxenda 6 mg/ml",
+                    unidade: "injeção",
+                    quantidade: 1
+                },
+                {
+                    nome: "Omeprazol 10mg",
+                    unidade: "cápsula(s)",
+                    quantidade: 3
+                }
+            ];
+            localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+        } else {
+            var medicamentos = [];
+            localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+        }
+        console.log("Não havia medicamentos cadastrados");
+        console.log("Os medicamentos são: " + `${JSON.stringify(medicamentos)}`);
+    } else {
+        medicamentos = JSON.parse(localStorage.getItem('medicamentos'));
+        console.log("Os medicamentos cadastrados eram " + `${JSON.stringify(medicamentos)}`);
+    }
+
+    function atualizarTabela() {
+        var tabela = document.getElementById("tabela");
+        tabela.innerHTML = "";
+        for (var i = 0; i < medicamentos.length; i++) {
+            var medicamento = medicamentos[i];
+            var linha = tabela.insertRow(-1);
+            linha.insertCell(0).innerHTML = medicamento.nome;
+            linha.insertCell(1).innerHTML = medicamento.quantidade;
+            linha.insertCell(2).innerHTML = medicamento.unidade;
+            linha.insertCell(3).innerHTML = "<input type='checkbox' onclick='selecionar(" + i + ")'>";
+        }
+    }
+
+    function limparCampos() {
+        document.getElementById("nome").value = "";
+        document.getElementById("unidade").value = "comprimido";
+        document.getElementById("quantidade").value = "";
+    }
+
+    unidade.addEventListener("change", function () {
+        if (document.getElementById('unidade').value == "outro") {
+            let novaUnidade = prompt("Qual a unidade?");
+            if (novaUnidade != "" && novaUnidade != null && novaUnidade != undefined && novaUnidade != " ") {
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = novaUnidade;
+                novaOpcao.innerHTML = novaUnidade;
+                document.getElementById('unidade').appendChild(novaOpcao);
+                document.getElementById('unidade').value = novaUnidade;
+            } else {
+                alert("Favor informar uma unidade.");
+                document.getElementById('unidade').value = "comprimido";
+            }
+        }
+    });
+
+    function cadastrar() {
+        if ((document.getElementById('nome').value) && (document.getElementById('unidade').value) && (document.getElementById('quantidade').value > 0)) {
+            var nome = document.getElementById("nome").value;
+            var unidade = document.getElementById("unidade").value;
+            var quantidade = document.getElementById("quantidade").value;
+            var medicamento = {
+                nome: nome,
+                unidade: unidade,
+                quantidade: quantidade
+            };
+            medicamentos.push(medicamento);
+            localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+            atualizarTabela();
+            limparCampos();
+            alert("Medicamento cadastrado");
+        } else {
+            alert("Favor preencher todos os campos corretamente!");
+            if (!(document.getElementById('quantidade').value > 0)) {
+                alert("A quantidade deve ser um número maior que zero!");
+            }
+        }
+    }
+
+    cadastroMedicamento.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        cadastrar();
+    });
+
+    function selecionar(posicao) {
+        var medicamento = medicamentos[posicao];
+        medicamento.selecionado = !medicamento.selecionado;
+    }
+
+    function apagarSelecionados() {
+        for (var i = medicamentos.length - 1; i >= 0; i--) {
+            var medicamento = medicamentos[i];
+            if (medicamento.selecionado) {
+                medicamentos.splice(i, 1);
+                localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+            }
+        }
+        atualizarTabela();
+        limparCampos();
+        alert("Medicamento removido");
+    }
+
+    apagaMedicamento.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        apagarSelecionados();
+        atualizarTabela();
+    });
+
+    atualizarTabela();
+</script>
+
+</html>

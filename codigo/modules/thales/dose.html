@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/styles/dose.css">
+    <!-- <script src="dose.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Nova dose</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Nova Dose</h1>
+    </div>
+    <div class="divForm"">
+        <form id=" formulario" method="post">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="nomeMedicamento">Medicamento: </label>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input1">
+                <select name="medicamento" id="medicamento">
+                    <script>
+                        var medicamentos = JSON.parse(localStorage.getItem("medicamentos"));
+                        for (var i = 0; i < medicamentos.length; i++) {
+                            document.write("<option value='" + medicamentos[i].nome + "'>" + medicamentos[i].nome + "</option>");
+                        };
+                    </script>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="dosagem">Dosagem: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 input1"><input type="number" name="dosagem" id="dosagem">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input2"><label for=unidade" id="unidade"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="horario">Horário: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2"><input type="time" name="horario" id="horario">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><label for="data">Data: </label></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input2"><input type="date" name="data" id="data"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><button class="btn btn-primary"
+                    id="cadastroDose">Registrar</button></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><button class="btn btn-primary" id="apagaDose">Apagar
+                    registro </button></div>
+        </div>
+        </form>
+    </div>
+
+    <div class="container dosagens">
+        <h1>Últimos registros</h1>
+    </div>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Medicamento</th>
+                    <th>Dosagem</th>
+                    <th>Unidade</th>
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody id="tabela">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <a href="medicamentos.html" class="btn btn-primary">Cadastrar medicamento</a>
+    </div>
+
+</body>
+
+<script>
+    if ((localStorage.getItem('medicamentos') == null) || (localStorage.getItem('medicamentos')[8] != ':') || (localStorage.getItem('medicamentos') == "") || (localStorage.getItem('medicamentos') == "[]")) {
+        alert("Cadastre um medicamento antes de cadastrar uma dose");
+        if (confirm("Deseja carregar dados de exemplo?")) {
+            var doses = [
+                {
+                    data: "2022-11-12",
+                    horario: "14:21",
+                    medicamento: "Dipirona 500mg",
+                    dosagem: 2,
+                    unidade: "comprimido(s)",
+                    timestamp: 1668273660000
+                },
+                {
+                    data: "2022-11-12",
+                    horario: "14:22",
+                    medicamento: "Saxenda",
+                    dosagem: 1,
+                    unidade: "injeção",
+                    timestamp: 1668273720000
+                },
+                {
+                    data: "2022-11-12",
+                    horario: "14:23",
+                    medicamento: "Omeprazol 20mg",
+                    dosagem: 3,
+                    unidade: "cápsula(s)",
+                    timestamp: 1668273780000
+                }
+            ];
+            localStorage.setItem('doses', JSON.stringify(doses));
+            var medicamentos = [
+            {
+                    nome: "Dipirona 500mg",
+                    unidade: "comprimido(s)",
+                    quantidade: 2
+                },
+                {
+                    nome: "Saxenda 6 mg/ml",
+                    unidade: "injeção",
+                    quantidade: 1
+                },
+                {
+                    nome: "Omeprazol 10mg",
+                    unidade: "cápsula(s)",
+                    quantidade: 3
+                }
+            ];
+            localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+            location.reload();
+        } else {
+            window.location.href = "medicamentos.html";
+        }
+        console.log("Não havia doses registradas. As doses são: " + `${JSON.stringify(doses)}`);
+        localStorage.setItem('doses', JSON.stringify(doses));
+    } else {
+        if ((localStorage.getItem('doses') == (null)) || (localStorage.getItem('doses')[8] != ':') || (localStorage.getItem('doses') == "") || (localStorage.getItem('doses') == "[]")) {
+            if (confirm("Sem doses registradas. Deseja carregar dados de exemplo?")) {
+                var doses = [
+                    {
+                        data: "2022-11-12",
+                        horario: "14:21",
+                        medicamento: "Dipirona 500mg",
+                        dosagem: 2,
+                        unidade: "comprimido",
+                        timestamp: 1668273660000
+                    },
+                    {
+                        data: "2022-11-12",
+                        horario: "14:22",
+                        medicamento: "Saxenda",
+                        dosagem: 1,
+                        unidade: "injeção",
+                        timestamp: 1668273720000
+                    },
+                    {
+                        data: "2022-11-12",
+                        horario: "14:23",
+                        medicamento: "Omeprazol 20mg",
+                        dosagem: 3,
+                        unidade: "cápsula",
+                        timestamp: 1668273780000
+                    }
+                ];
+                localStorage.setItem('doses', JSON.stringify(doses));
+            } else {
+                var doses = [];
+                localStorage.setItem('doses', JSON.stringify(doses));
+            }
+            console.log("Não havia doses registradas. As doses são: " + `${JSON.stringify(doses)}`);
+        } else {
+            var doses = JSON.parse(localStorage.getItem('doses'));
+            console.log("As doses são: " + `${JSON.stringify(doses)}`);
+        }
+    }
+
+    var diaHoje = new Date().toISOString().slice(0, 10);
+    var horaAgora = new Date().toLocaleTimeString('pt-BR', { hour12: false, hour: "numeric", minute: "numeric" });
+
+    function atualizarDosagemUnidade() {
+        var medicamentos = JSON.parse(localStorage.getItem("medicamentos"));
+        var medicamento = document.getElementById("medicamento");
+        let dosagem = document.getElementById("dosagem");
+        let unidade = document.getElementById("unidade");
+        for (var i = 0; i < medicamentos.length; i++) {
+            if (medicamento.value == medicamentos[i].nome) {
+                dosagem.value = medicamentos[i].quantidade;
+                unidade.innerHTML = "<option value='" + medicamentos[i].unidade + "'>" + medicamentos[i].unidade + "</option>";
+            }
+        }
+    }
+
+    medicamento.addEventListener("change", function () {
+        atualizarDosagemUnidade();
+    });
+
+    function atualizarTabela() {
+        var tabela = document.getElementById("tabela");
+        tabela.innerHTML = "";
+        for (let i = (doses.length - 1); i >= 0; i--) {
+            var dose = doses[i];
+            var linha = tabela.insertRow(-1);
+            linha.insertCell(0).innerHTML = dose.data;
+            linha.insertCell(1).innerHTML = dose.horario;
+            linha.insertCell(2).innerHTML = dose.medicamento;
+            linha.insertCell(3).innerHTML = dose.dosagem;
+            linha.insertCell(4).innerHTML = dose.unidade;
+            linha.insertCell(5).innerHTML = "<input type='checkbox' onclick='selecionar(" + i + ")'>";
+        }
+        atualizarDosagemUnidade();
+        document.getElementById("horario").value = horaAgora;
+        document.getElementById("data").value = diaHoje;
+    }
+
+    function limparCampos() {
+        document.getElementById("data").value = diaHoje;
+        document.getElementById("horario").value = horaAgora;
+        document.getElementById("medicamento").value = "";
+        document.getElementById("dosagem").value = "";
+        document.getElementById("unidade").value = "";
+    }
+
+    function cadastrar() {
+        if (document.getElementById('data').value && document.getElementById('horario').value && document.getElementById('medicamento').value && document.getElementById('dosagem').value > 0) {
+            for (var i = 0; i < medicamentos.length; i++) {
+                if (document.getElementById('medicamento').value == medicamentos[i].nome) {
+                    var unidade = medicamentos[i].unidade;
+                };
+                var dose = {
+                    data: document.getElementById('data').value,
+                    horario: document.getElementById('horario').value,
+                    medicamento: document.getElementById('medicamento').value,
+                    dosagem: document.getElementById('dosagem').value,
+                    unidade: unidade,
+                    timestamp: new Date(data.value + " " + horario.value).getTime()
+                }
+            };
+            doses.push(dose);
+            localStorage.setItem('doses', JSON.stringify(doses));
+            atualizarTabela();
+            limparCampos();
+            alert("Registro salvo");
+        } else {
+            alert("Favor preencher todos os campos corretamente");
+        }
+    }
+
+    cadastroDose.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        cadastrar();
+    });
+
+    function selecionar(posicao) {
+        var dose = doses[posicao];
+        dose.selecionado = !dose.selecionado;
+    }
+
+    function apagarSelecionados() {
+        for (var i = doses.length - 1; i >= 0; i--) {
+            var dose = doses[i];
+            if (dose.selecionado) {
+                doses.splice(i, 1);
+                localStorage.setItem('doses', JSON.stringify(doses));
+            }
+        }
+        atualizarTabela();
+        limparCampos();
+        alert("Registro removido");
+    }
+
+    apagaDose.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        apagarSelecionados();
+        atualizarTabela();
+    });
+
+    atualizarTabela();
+
+</script>
+
+</html>

@@ -83,7 +83,7 @@ window.onload = () => {
             limpar();
             alert("Registro salvo.");
         } else {
-            alert('Favor preencher corretamente todos os campos!')
+            alert('Favor preencher corretamente todos os campos!');
         }
     })
 
