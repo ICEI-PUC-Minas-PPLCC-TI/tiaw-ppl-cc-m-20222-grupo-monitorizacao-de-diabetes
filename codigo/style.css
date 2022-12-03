@@ -1,0 +1,17 @@
+body{    
+    background-image: url("./assets/images/background2.webp");
+}
+
+header{
+    background-color: #568ad6;
+}
+
+main{
+    background-color: white;
+}
+
+.btnFiltro{
+    /* background-color: #568ad6; */
+    color: red;
+}
+
