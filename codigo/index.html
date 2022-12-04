@@ -96,8 +96,39 @@
 								<p>XXmg/dL - XXmg/dL</p>
 							</div>
 						</div>
-						<div class="col-md-2">
-							<a href="altDados.html"><input  type="button" class="btn btn-outline-info" name="btnAddMore" value="Editar Perfil"></a>
+
+						<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
+							Alterar dados
+						</button>
+						
+						<!--MODAL-->
+
+						<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+							  <div class="modal-content">
+
+								<div class="modal-body">
+									<div id="formDados">
+
+										<p>Nome Completo: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="nomeCompleto"></p>
+										<p>Gênero: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="genero"></p>
+										<p>Tipo de Diabetes: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center" type="text" id="tipo"></p>
+										<p>Data de Nascimento: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center" type="text" id="dataNasc"></p>
+										<p>E-Mail: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="emailPessoal"></p>
+										<p>E-Mail do Médico: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="emailMedico"></p>
+										<p>Remédio que faz uso: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="remedio"></p>
+										<p>Faixa alvo da glicemia: <br> 
+											<input class="gap-2 col-4 mx-auto" type="text" style="text-align:center" id="faixaAlvoA">
+											<input class= "gap-2 col-4 mx-auto" type="text" style="text-align:center" id="faixaAlvoB">
+										</p>
+							
+									</div>
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-outline-info" id="btnsalvarDados">Confirmar alterações</button>
+								</div>
+							  </div>
+							</div>
 						</div>
 						
 
