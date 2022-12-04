@@ -44,7 +44,7 @@
 			<div class="col-md-4" id="test">
 				<div class="row g-0 card border-info mb-3">
 					
-					  <div class="card-body">
+					  <div class="card-body" id="dadosdoPerfil">
 
 						<h5 class="card-title" style="text-align:center">Meu Perfil</h5><br>
 						<div class="row">
@@ -97,10 +97,11 @@
 							</div>
 						</div>
 
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
 							Alterar dados
 						</button>
-						
+						</div>
 						<!--MODAL-->
 
 						<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,16 +111,17 @@
 								<div class="modal-body">
 									<div id="formDados">
 
-										<p>Nome Completo: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="nomeCompleto"></p>
-										<p>Gênero: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="genero"></p>
-										<p>Tipo de Diabetes: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center" type="text" id="tipo"></p>
-										<p>Data de Nascimento: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center" type="text" id="dataNasc"></p>
-										<p>E-Mail: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="emailPessoal"></p>
-										<p>E-Mail do Médico: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="emailMedico"></p>
-										<p>Remédio que faz uso: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center" id="remedio"></p>
-										<p>Faixa alvo da glicemia: <br> 
-											<input class="gap-2 col-4 mx-auto" type="text" style="text-align:center" id="faixaAlvoA">
-											<input class= "gap-2 col-4 mx-auto" type="text" style="text-align:center" id="faixaAlvoB">
+										<p>Nome Completo: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="nomeCompleto"></p>
+										<p>Gênero: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="genero"></p>
+										<p>Tipo de Diabetes: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center; border-radius: 1rem;" type="text" id="tipo"></p>
+										<p>Data de Nascimento: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center; border-radius: 1rem;" type="text" id="dataNasc"></p>
+										<p>E-Mail: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="emailPessoal"></p>
+										<p>E-Mail do Médico: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="emailMedico"></p>
+										<p>Remédio que faz uso: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="remedio"></p>
+										Faixa alvo da glicemia:
+										<p style="text-align: center;"> 
+											<input style="border-radius: 1rem;" class="gap-2 col-5 mx-auto" type="text" style="text-align:center" id="faixaAlvoA">
+											<input style="border-radius: 1rem;" class= "gap-2 col-5 mx-auto" type="text" style="text-align:center" id="faixaAlvoB">
 										</p>
 							
 									</div>
@@ -145,7 +147,7 @@
 					<div class="form-floating col-5 col-sm-3">
 						<input type="text" class="form-control" id="dataInicial" autocomplete="off"
 							placeholder="Data Incial">
-						<label for="dataInicial">Data Incial</label>
+						<label for="dataInicial">Data Inicial</label>
 					</div>
 					<div class="form-floating col-5 col-sm-3">
 						<input type="text" class="form-control" id="dataFinal" autocomplete="off"
@@ -214,7 +216,7 @@
 	</main>
 
 	<footer class="container"></footer>
-
+	<script src="perfil.js"></script>
 </body>
 
 </html>
