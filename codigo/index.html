@@ -81,7 +81,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form class="row g-3">
+						<form class="formMedidas row g-3" novalidate>
 							<div class="col-md-6">
 								<label for="tipoMedida" class="form-label">Tipo da Medida</label>
 								<select class="form-select" id="tipoMedida">
@@ -93,27 +93,29 @@
 							</div>
 							<div class="col-md-6">
 								<label for="addMedida" class="form-label">Medida</label>
-								<input type="number" class="form-control" id="addMedida" min="0" max="500"
-									autocomplete="off" placeholder="Ex.: 110">
+								<input type="number" class="form-control" id="addMedida" min="0" max="1000"
+									autocomplete="off" placeholder="Ex.: 110" required>
+								<div class="invalid-feedback">Favor inserir valor</div>
+								<div class="col-md-6">
+									<label for="addDia" class="form-label">Data</label>
+									<input type="date" class="form-control" id="addDia" required>
+									<div class="invalid-feedback">Favor inserir data</div>
+								</div>
+								<div class="col-md-6">
+									<label for="addHora" class="form-label">Hora</label>
+									<input type="time" class="form-control" id="addHora" required>
+									<div class="invalid-feedback">Favor inserir horário</div>
+								</div>
+
 							</div>
-							<div class="col-md-6">
-								<label for="addDia" class="form-label">Data</label>
-								<input type="date" class="form-control" id="addDia">
-							</div>
-							<div class="col-md-6">
-								<label for="addHora" class="form-label">Hora</label>
-								<input type="time" class="form-control" id="addHora">
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+								<button type="submit" class="btn btn-primary" id="btnSave">Salvar</button>
 							</div>
 						</form>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnSave">Salvar</button>
 					</div>
 				</div>
 			</div>
-		</div>
 
 
 	</main>

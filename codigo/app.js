@@ -12,22 +12,22 @@ onload = () => {
 
     console.log(glicemiaCompleta)
 
-    if(glicemiaCompleta == null){
+    if (glicemiaCompleta == null) {
         localStorage.setItem('glicemia', JSON.stringify(g));
         glicemiaCompleta = [];
     }
 
-    if(refeicoesCompleta == null){
+    if (refeicoesCompleta == null) {
         localStorage.setItem('refeicoes', JSON.stringify(r));
         refeicoesCompleta = [];
     }
 
-    if(remediosCompleta == null){
+    if (remediosCompleta == null) {
         localStorage.setItem('remedios', JSON.stringify(m));
         remediosCompleta = [];
     }
 
-    if(insulinaCompleta == null){
+    if (insulinaCompleta == null) {
         localStorage.setItem('insulina', JSON.stringify(i));
         insulinaCompleta = [];
     }
@@ -265,6 +265,21 @@ onload = () => {
 
     });
 
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.formMedidas')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
     $("#btnSave").click(function () {
 
         let tipo = document.getElementById("tipoMedida").value;
@@ -307,6 +322,7 @@ onload = () => {
                 break;
         }
 
+        modal.modal('hide');
         myChart.update();
 
 
