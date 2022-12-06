@@ -10,9 +10,7 @@ onload = () => {
     var remediosCompleta = JSON.parse(localStorage.getItem('remedios'));
     var insulinaCompleta = JSON.parse(localStorage.getItem('insulina'));
 
-    // var perfilMock = '{"id":0,"nomeCompleto":"Sandra de Freitas","tipo":"Mellitus Tipo 2","dataNasc":"1967-06-08","email":"sandrafreitas@gmail.com", "metformina": "checked", "pioglitazona": "checked", "miglitol": "checked", "glimepirida": "checked"}';
-
-    // localStorage.setItem('user', perfilMock);
+    
 
     if (glicemiaCompleta == null) {
         localStorage.setItem('glicemia', JSON.stringify(g));
@@ -54,8 +52,6 @@ onload = () => {
     });
 
     let utc = new Date().toDateString()
-    
-    console.log(utc)
 
     const hojeInicio = new Date(utc);
     const hojeFim = new Date(parseInt(Date.parse(hojeInicio.toDateString()))+ 86399000) 
@@ -67,8 +63,6 @@ onload = () => {
     var de = hojeInicio.valueOf();
     var ate = hojeFim.valueOf();
 
-    console.log(de)
-    console.log(ate)
 
     let glicemia = '['
 
@@ -222,6 +216,12 @@ onload = () => {
 
     var perfil = JSON.parse(localStorage.getItem('user'));
 
+    if(perfil == null){
+        let perfilMock = '{"id":0,"nomeCompleto":"Sandra de Freitas","tipo":"Mellitus Tipo 2","dataNasc":"1967-06-08","email":"sandrafreitas@gmail.com", "metformina": "checked", "pioglitazona": "checked", "miglitol": "checked", "glimepirida": "checked"}';
+        localStorage.setItem('user', perfilMock);
+        perfil = JSON.parse(localStorage.getItem('user'));
+    }
+        
     let perfilCard = document.getElementById('dadosdoPerfil');
 
     perfilCard.innerHTML = `<div class="row">
@@ -433,22 +433,22 @@ onload = () => {
         perfil.tipo = document.getElementById("tipoDiabetes").value;
         perfil.email = document.getElementById("email").value;
 
-        if (document.getElementById("metformina") == "on")
+        if (document.getElementById("metformina").checked)
             perfil.metformina = "checked";
         else
             perfil.metformina = "";
 
-        if (document.getElementById("pioglitazona") == "on")
+        if (document.getElementById("pioglitazona"))
             perfil.pioglitazona = "checked";
         else
             perfil.pioglitazona = "";
 
-        if (document.getElementById("miglitol") == "on")
+        if (document.getElementById("miglitol"))
             perfil.miglitol = "checked";
         else
             perfil.miglitol = "";
 
-        if (document.getElementById("glimepirida") == "on")
+        if (document.getElementById("glimepirida"))
             perfil.glimepirida = "checked";
         else
             perfil.glimepirida = "";
