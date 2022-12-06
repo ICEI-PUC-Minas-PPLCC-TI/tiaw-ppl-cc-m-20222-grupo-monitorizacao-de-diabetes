@@ -438,17 +438,17 @@ onload = () => {
         else
             perfil.metformina = "";
 
-        if (document.getElementById("pioglitazona"))
+        if (document.getElementById("pioglitazona").checked)
             perfil.pioglitazona = "checked";
         else
             perfil.pioglitazona = "";
 
-        if (document.getElementById("miglitol"))
+        if (document.getElementById("miglitol").checked)
             perfil.miglitol = "checked";
         else
             perfil.miglitol = "";
 
-        if (document.getElementById("glimepirida"))
+        if (document.getElementById("glimepirida").checked)
             perfil.glimepirida = "checked";
         else
             perfil.glimepirida = "";
