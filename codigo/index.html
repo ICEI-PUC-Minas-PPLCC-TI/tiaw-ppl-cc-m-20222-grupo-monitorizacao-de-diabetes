@@ -27,117 +27,25 @@
 
 <body>
 	<header class="container">
-		<nav class="nav navbar-expand-lg menu1">
-			<a class="nav-link active" href="index.html">Home</a>
-			<!-- <a class="nav-link" href="sobre.html">Sobre Nós</a> -->
-
-			<!-- <form class="d-flex" role="search" id="pesquisa">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_bar">
-                <button class="btn btn-secondary" type="submit" id="pesquisaBtn">Search</button>
-            </form> -->
-		</nav>
+		<img src="./assets/images/logo.png" id="logo">
 	</header>
 
 	<main class="container p-4">
 
 		<div class="row">
-			<div class="col-md-4" id="test">
-				<div class="row g-0 card border-info mb-3">
-					
-					  <div class="card-body" id="dadosdoPerfil">
+			<div class="col-md-4" id="meuPerfil">
+				<div class="row g-0 card border-info mb-3 p-3">
 
-						<h5 class="card-title" style="text-align:center">Meu Perfil</h5><br>
-						<div class="row">
-							<div class="col-md-6">
-								<label>Nome:</label>
-							</div>
-							<div class="col-md-6">
-								<p>Usuário da Silva</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<label>Data de nascimento: </label>
-							</div>
-							<div class="col-md-6">
-								<p>01/01/2000</p>
-							</div>
-						</div>                                                
-						<div class="row">
-							<div class="col-md-6">
-								<label>Tipo de Diabetes: </label>
-							</div>
-							<div class="col-md-6">
-								<p>tipo 1</p>
-							</div>
-						</div>
+					<h5 class="card-title" style="text-align:center">Meu Perfil</h5>
+					<img src="assets/images/blank-profile-picture-973460_1280.webp" alt="" id="pfp">
+
+					<div class="card-body" id="dadosdoPerfil">
 						
-						<div class="row">
-							<div class="col-md-6">
-								<label>Remédio que faz uso: </label>
-							</div>
-							<div class="col-md-6">
-								<p>Glifage</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<label>Email: </label>
-							</div>
-							<div class="col-md-6">
-								<p>usuario@gmail.com</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<label>Faixa alvo da glicemia: </label>
-							</div>
-							<div class="col-md-6">
-								<p>XXmg/dL - XXmg/dL</p>
-							</div>
-						</div>
-
-						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
-							Alterar dados
-						</button>
-						</div>
-						<!--MODAL-->
-
-						<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-							  <div class="modal-content">
-
-								<div class="modal-body">
-									<div id="formDados">
-
-										<p>Nome Completo: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="nomeCompleto"></p>
-										<p>Gênero: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="genero"></p>
-										<p>Tipo de Diabetes: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center; border-radius: 1rem;" type="text" id="tipo"></p>
-										<p>Data de Nascimento: <br> <input class="d-grid gap-2 col-12 mx-auto" style="text-align:center; border-radius: 1rem;" type="text" id="dataNasc"></p>
-										<p>E-Mail: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="emailPessoal"></p>
-										<p>E-Mail do Médico: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="emailMedico"></p>
-										<p>Remédio que faz uso: <br> <input class="d-grid gap-2 col-12 mx-auto" type="text" style="text-align:center; border-radius: 1rem;" id="remedio"></p>
-										Faixa alvo da glicemia:
-										<p style="text-align: center;"> 
-											<input style="border-radius: 1rem;" class="gap-2 col-5 mx-auto" type="text" style="text-align:center" id="faixaAlvoA">
-											<input style="border-radius: 1rem;" class= "gap-2 col-5 mx-auto" type="text" style="text-align:center" id="faixaAlvoB">
-										</p>
-							
-									</div>
-								</div>
-								<div class="modal-footer">
-								  <button type="button" class="btn btn-outline-info" id="btnsalvarDados">Confirmar alterações</button>
-								</div>
-							  </div>
-							</div>
-						</div>
-						
-
-					  </div>
-					
-				  </div>
+					</div>
+				</div>
 			</div>
+
+
 			<div class="col-12 col-sm-12 col-md-8">
 				<div class="row">
 					<div class="col-12 col-sm-3" id="addDiv">
@@ -163,7 +71,6 @@
 						<canvas id="myChart"></canvas>
 					</div>
 				</div>
-
 			</div>
 		</div>
 
@@ -191,17 +98,16 @@
 								<input type="number" class="form-control" id="addMedida" min="0" max="1000"
 									autocomplete="off" placeholder="Ex.: 110" required>
 								<div class="invalid-feedback">Favor inserir valor</div>
-								<div class="col-md-6">
-									<label for="addDia" class="form-label">Data</label>
-									<input type="date" class="form-control" id="addDia" required>
-									<div class="invalid-feedback">Favor inserir data</div>
-								</div>
-								<div class="col-md-6">
-									<label for="addHora" class="form-label">Hora</label>
-									<input type="time" class="form-control" id="addHora" required>
-									<div class="invalid-feedback">Favor inserir horário</div>
-								</div>
-
+							</div>
+							<div class="col-md-6">
+								<label for="addDia" class="form-label">Data</label>
+								<input type="date" class="form-control" id="addDia" required>
+								<div class="invalid-feedback">Favor inserir data</div>
+							</div>
+							<div class="col-md-6">
+								<label for="addHora" class="form-label">Hora</label>
+								<input type="time" class="form-control" id="addHora" required>
+								<div class="invalid-feedback">Favor inserir horário</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -216,7 +122,6 @@
 	</main>
 
 	<footer class="container"></footer>
-	<script src="perfil.js"></script>
 </body>
 
 </html>

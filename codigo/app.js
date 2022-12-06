@@ -10,7 +10,9 @@ onload = () => {
     var remediosCompleta = JSON.parse(localStorage.getItem('remedios'));
     var insulinaCompleta = JSON.parse(localStorage.getItem('insulina'));
 
-    console.log(glicemiaCompleta)
+    // var perfilMock = '{"id":0,"nomeCompleto":"Sandra de Freitas","tipo":"Mellitus Tipo 2","dataNasc":"1967-06-08","email":"sandrafreitas@gmail.com", "metformina": "checked", "pioglitazona": "checked", "miglitol": "checked", "glimepirida": "checked"}';
+
+    // localStorage.setItem('user', perfilMock);
 
     if (glicemiaCompleta == null) {
         localStorage.setItem('glicemia', JSON.stringify(g));
@@ -51,11 +53,22 @@ onload = () => {
         return a.x - b.x;
     });
 
-    const hojeInicio = new Date((Date.now()));
-    const hojeFim = new Date(Date.now() + 86399000)
+    let utc = new Date().toDateString()
+    
+    console.log(utc)
 
-    var de = parseInt(Date.parse(hojeInicio.toDateString())) - 10800000;
-    var ate = parseInt(Date.parse(hojeFim.toDateString())) - 10800000 - 1000;
+    const hojeInicio = new Date(utc);
+    const hojeFim = new Date(parseInt(Date.parse(hojeInicio.toDateString()))+ 86399000) 
+
+    // var de = parseInt(Date.parse(hojeInicio.toDateString()));
+    // var ate = parseInt(Date.parse(hojeFim.toDateString())) + 86399000;
+
+    
+    var de = hojeInicio.valueOf();
+    var ate = hojeFim.valueOf();
+
+    console.log(de)
+    console.log(ate)
 
     let glicemia = '['
 
@@ -176,13 +189,21 @@ onload = () => {
                     type: 'time',
                     ticks: {
                         source: 'data'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data'
                     }
                 },
                 y: {
                     min: 0,
                     max: 500,
+                    title: {
+                        display: true,
+                        text: 'mg/dl'
+                    },
                     grid: {
-                        lineWidth: 2,
+                        lineWidth: 1,
                         drawBorder: false,
                         color: function (context) {
                             if (context.tick.value > 150) {
@@ -198,6 +219,67 @@ onload = () => {
             }
         },
     });
+
+    var perfil = JSON.parse(localStorage.getItem('user'));
+
+    let perfilCard = document.getElementById('dadosdoPerfil');
+
+    perfilCard.innerHTML = `<div class="row">
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Nome</span>
+            <input type="text" class="form-control" value="${perfil.nomeCompleto}" id="nomePerfil" disabled>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Data de Nascimento</span>
+            <input type="date" class="form-control" id="nasc" value="${perfil.dataNasc}" disabled>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Diabetes</span>
+            <input type="text" class="form-control" id="tipoDiabetes" value="${perfil.tipo}" disabled>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">E-mail</span>
+            <input type="text" class="form-control" id="email" value="${perfil.email}" disabled>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card-header">Remédios</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" id="metformina" disabled ${perfil.metformina}>
+                <label class="form-check-label" for="metformina">Metformina</label>
+            </li>
+
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" id="glimepirida" disabled ${perfil.glimepirida}>
+                <label class="form-check-label" for="glimepirida">Glimepirida</label>
+            </li>
+
+            <li class="list-group-item">                
+                <input class="form-check-input" type="checkbox" id="miglitol" disabled ${perfil.miglitol}>
+                <label class="form-check-label" for="miglitol">Miglitol</label>
+            </li>
+
+            <li class="list-group-item">                
+                <input class="form-check-input" type="checkbox" id="pioglitazona" disabled ${perfil.pioglitazona}>
+                <label class="form-check-label" for="pioglitazona">Pioglitazona</label>
+            </li>
+        </ul>
+    </div>
+        <button type="button" class="btn btn-primary" id="btnEditarPerfil">Editar</button>
+        <button type="button" class="btn btn-primary" id="btnSalvarPerfil" disabled>Salvar</button>
+</div>`
 
 
     $(function () {
@@ -245,8 +327,8 @@ onload = () => {
             let i = document.getElementById("dataInicial").value;
             let f = document.getElementById("dataFinal").value;
 
-            i = parseInt(Date.parse(i)) - 10800000;
-            f = parseInt(Date.parse(f)) - 10800000 - 1000;
+            i = parseInt(Date.parse(i));
+            f = parseInt(Date.parse(f)) - 1000;
             let filtered = '['
             for (var k in dComplete) {
                 if (dComplete[k].x >= i && dComplete[k].x <= f) {
@@ -257,7 +339,6 @@ onload = () => {
             if (filtered.length > 1)
                 filtered = filtered.substr(0, filtered.length - 1);
             filtered += ']';
-            // console.log(filtered);
 
             return JSON.parse(filtered);
         }
@@ -322,17 +403,70 @@ onload = () => {
                 break;
         }
 
-        modal.modal('hide');
-        myChart.update();
+        console.log(glicemiaJSON)
 
+        myChart.update();
+        modal.modal('hide');
+        console.log("text")
+    })
+
+    $('#btnEditarPerfil').click(function () {
+        document.getElementById("nomePerfil").toggleAttribute("disabled")
+        document.getElementById("nasc").toggleAttribute("disabled")
+        document.getElementById("tipoDiabetes").toggleAttribute("disabled")
+        document.getElementById("email").toggleAttribute("disabled")
+        document.getElementById("metformina").toggleAttribute("disabled")
+        document.getElementById("glimepirida").toggleAttribute("disabled")
+        document.getElementById("miglitol").toggleAttribute("disabled")
+        document.getElementById("pioglitazona").toggleAttribute("disabled")
+
+        document.getElementById("btnEditarPerfil").toggleAttribute("disabled")
+        document.getElementById("btnSalvarPerfil").toggleAttribute("disabled")
 
     })
 
+    $('#btnSalvarPerfil').click(function () {
+
+
+        perfil.nomeCompleto = document.getElementById("nomePerfil").value;
+        perfil.dataNasc = document.getElementById("nasc").value;
+        perfil.tipo = document.getElementById("tipoDiabetes").value;
+        perfil.email = document.getElementById("email").value;
+
+        if (document.getElementById("metformina") == "on")
+            perfil.metformina = "checked";
+        else
+            perfil.metformina = "";
+
+        if (document.getElementById("pioglitazona") == "on")
+            perfil.pioglitazona = "checked";
+        else
+            perfil.pioglitazona = "";
+
+        if (document.getElementById("miglitol") == "on")
+            perfil.miglitol = "checked";
+        else
+            perfil.miglitol = "";
+
+        if (document.getElementById("glimepirida") == "on")
+            perfil.glimepirida = "checked";
+        else
+            perfil.glimepirida = "";
+
+        localStorage.setItem('user', JSON.stringify(perfil));
+
+        document.getElementById("nomePerfil").toggleAttribute("disabled")
+        document.getElementById("nasc").toggleAttribute("disabled")
+        document.getElementById("tipoDiabetes").toggleAttribute("disabled")
+        document.getElementById("email").toggleAttribute("disabled")
+        document.getElementById("metformina").toggleAttribute("disabled")
+        document.getElementById("glimepirida").toggleAttribute("disabled")
+        document.getElementById("miglitol").toggleAttribute("disabled")
+        document.getElementById("pioglitazona").toggleAttribute("disabled")
+
+        document.getElementById("btnEditarPerfil").toggleAttribute("disabled")
+        document.getElementById("btnSalvarPerfil").toggleAttribute("disabled")
+
+
+    })
 }
-
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', () => {
-  myInput.focus()
-})
